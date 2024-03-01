@@ -229,25 +229,26 @@ window.addEventListener("load", () => {
     const minutes = today.getMinutes();
     const seconds = today.getSeconds();
 
-    // add '0' to hour, minute & second when they are less than 10
+    //add '0' to hour, minute & second when they are less 10
     const hour = hours < 10 ? "0" + hours : hours;
     const minute = minutes < 10 ? "0" + minutes : minutes;
     const second = seconds < 10 ? "0" + seconds : seconds;
 
-    // make clock a 12-hour time clock
-    const hourTime = (hour % 12) || 12; // Display 12 instead of 0
+    //make clock a 12-hour time clock
+    const hourTime = hour > 12 ? hour - 12 : hour;
 
-    // assigning 'AM' or 'PM' to indicate time of the day
+    // if (hour === 0) {
+    //   hour = 12;
+    // }
+    //assigning 'am' or 'pm' to indicate time of the day
     const ampm = hour < 12 ? "AM" : "PM";
 
-    // add a space between the time and 'AM' or 'PM'
-    const time = hourTime + ":" + minute + ":" + second + " " + ampm;
+    const time = hourTime + ":" + minute + ":" + second + ampm;
 
     document.getElementById("time").innerHTML = time;
     setTimeout(clock, 1000);
   }
 });
-
 
 /* window.onload = function() {
   navigator.getBattery().then(function(battery) {
